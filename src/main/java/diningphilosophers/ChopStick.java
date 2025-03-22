@@ -20,12 +20,11 @@ public class ChopStick {
         try {
             if (!iAmFree) {
                 condVerrou.awaitNanos(delay * 1000000L); // Convert delay to nanoseconds
-                if (!iAmFree) { // Toujours pas libre, on abandonne
+                if (!iAmFree) { 
                     return false; // Echec
                 }
             }
             iAmFree = false;
-            // Pas utile de faire notifyAll ici, personne n'attend qu'elle soit occupée
             return true; // Succès
         } finally {
             verrou.unlock();
